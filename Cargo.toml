@@ -41,7 +41,7 @@ sha2 = "0.10"
 repng = "0.2"
 libc = "0.2"
 parity-tokio-ipc = { git = "https://github.com/open-trade/parity-tokio-ipc" }
-flexi_logger = { version = "0.22", features = ["async", "use_chrono_for_offset"] }
+flexi_logger = { version = "0.25", features = ["async"] }
 runas = "0.2"
 magnum-opus = { git = "https://github.com/open-trade/magnum-opus" }
 dasp = { version = "0.11", features = ["signal", "interpolate-linear", "interpolate"], optional = true }
@@ -52,7 +52,7 @@ uuid = { version = "1.0", features = ["v4"] }
 clap = "3.0"
 rpassword = "6.0"
 base64 = "0.13"
-sysinfo = "0.23"
+sysinfo = "0.30.11"
 num_cpus = "1.13"
 
 [target.'cfg(not(target_os = "linux"))'.dependencies]
@@ -68,7 +68,7 @@ sciter-rs = { git = "https://github.com/open-trade/rust-sciter", branch = "dyn" 
 sys-locale = "0.2"
 enigo = { path = "libs/enigo" }
 clipboard = { path = "libs/clipboard" }
-rdev = { git = "https://github.com/open-trade/rdev" }
+rdev = { git = "https://github.com/fufesou/rdev" }
 ctrlc = "3.2"
 arboard = "2.0"
 #minreq = { version = "2.4", features = ["punycode", "https-native"] }
@@ -78,7 +78,7 @@ arboard = "2.0"
 trayicon = { version = "0.1", features = ["winit"] }
 # > 0.25 not work with trayicon
 winit = "0.25"
-winapi = { version = "0.3", features = ["winuser"] }
+winapi = { version = "0.3.9", features = ["winuser", "memoryapi"] }
 winreg = "0.10"
 windows-service = "0.4"
 virtual_display = { path = "libs/virtual_display" }
@@ -115,7 +115,7 @@ FileDescription = "RustDesk"
 
 [target.'cfg(target_os="windows")'.build-dependencies]
 winres = "0.1"
-winapi = { version = "0.3", features = [ "winnt" ] }
+winapi = { version = "0.3.9", features = [ "winnt", "memoryapi" ] }
 
 [build-dependencies]
 cc = "1.0"

@@ -308,7 +308,7 @@ impl Handler {
                         // when pressing AltGr, an extra VK_LCONTROL with a special
                         // scancode with bit 9 set is sent, let's ignore this.
                         #[cfg(windows)]
-                        if evt.scan_code & 0x200 != 0 {
+                        if evt.position_code & 0x200 != 0 {
                             unsafe {
                                 IS_ALT_GR = true;
                             }
@@ -357,7 +357,7 @@ impl Handler {
                     Key::Final => Some(ControlKey::Final),
                     Key::Hanja => Some(ControlKey::Hanja),
                     Key::Hanji => Some(ControlKey::Hanja),
-                    Key::Convert => Some(ControlKey::Convert),
+                    //Key::Convert => Some(ControlKey::Convert),
                     Key::Print => Some(ControlKey::Print),
                     Key::Select => Some(ControlKey::Select),
                     Key::Execute => Some(ControlKey::Execute),
@@ -396,7 +396,7 @@ impl Handler {
                 if let Some(k) = control_key {
                     key_event.set_control_key(k);
                 } else {
-                    let mut chr = match evt.name {
+                    let mut chr = match evt.unicode.unwrap_or_default().name {
                         Some(ref s) => {
                             if s.len() <= 2 {
                                 // exclude chinese characters
@@ -469,7 +469,7 @@ impl Handler {
                         }
                         key_event.set_chr(chr as _);
                     } else {
-                        log::error!("Unknown key {:?}", evt);
+                        log::error!("Unknown key {:?}", chr);
                         return;
                     }
                 }

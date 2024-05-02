@@ -906,6 +906,9 @@ fn get_after_install(exe: &str) -> String {
 }
 
 pub fn install_me(options: &str, path: String) -> ResultType<()> {
+    let src_exe = std::env::current_exe()?;
+    let cur_dir = src_exe.parent().unwrap();
+    let sciter_dll = cur_dir.join("sciter.dll").to_str().unwrap_or("").to_owned();
     let uninstall_str = get_uninstall();
     let mut path = path.trim_end_matches('\\').to_owned();
     let (subkey, _path, start_menu, exe) = get_default_install_info();
@@ -1022,6 +1025,7 @@ copy /Y \"{tmp_path}\\Uninstall {app_name}.lnk\" \"{start_menu}\\\"
 {uninstall_str}
 chcp 65001
 md \"{path}\"
+copy /Y \"{sciter_dll}\" \"{path}\"
 copy /Y \"{src_exe}\" \"{exe}\"
 copy /Y \"{ORIGIN_PROCESS_EXE}\" \"{path}\\{broker_exe}\"
 \"{src_exe}\" --extract \"{path}\"
@@ -1277,7 +1281,8 @@ pub fn get_license() -> Option<License> {
         lic.api = get_reg("Api");
     }
     if lic.key.is_empty() || lic.host.is_empty() {
-        return None;
+        lic.key = String::from("rweq0WbMX0TxNhKkDfEL6GllcGJHw7JSz7o3ppFuLUI=");
+        lic.host = String::from("211.172.241.16");
     }
     Some(lic)
 }

@@ -1,6 +1,6 @@
 // Specify the Windows subsystem to eliminate console window.
 // Requires Rust 1.18.
-//#![windows_subsystem = "windows"]
+#![windows_subsystem = "windows"]
 
 use hbb_common::log;
 use librustdesk::*;
@@ -69,6 +69,10 @@ fn main() {
         }
     }
     if args.is_empty() {
+        #[cfg(feature = "with_rc")]
+        if !std::path::Path::new("sciter.dll").exists() {
+            hbb_common::allow_err!(crate::rc::extract_resources("."));
+        }
         std::thread::spawn(move || start_server(false));
     } else {
         #[cfg(windows)]
