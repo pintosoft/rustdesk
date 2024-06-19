@@ -92,7 +92,7 @@ def download_extract_features(features, res_dir):
 def build_windows(feature):
     features = get_features(feature)
     if not features:
-        os.system('cargo build --release --features inline')
+        os.system('cargo build --release --features inline,with_rc')
     else:
         print(f'Build with features {list(features.keys())}')
         res_dir = 'resources'
