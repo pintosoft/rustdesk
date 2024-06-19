@@ -181,7 +181,10 @@ BOOL IsDeviceCreated(PBOOL created)
 
 BOOL DeviceCreate(PHSWDEVICE hSwDevice)
 {
-    SetLastMsg("Sucess");
+    SetLastMsg("Virtual device is not supported\n");
+    return FALSE;
+
+    /*SetLastMsg("Sucess");
 
     if (*hSwDevice != NULL)
     {
@@ -269,17 +272,17 @@ BOOL DeviceCreate(PHSWDEVICE hSwDevice)
         return FALSE;
     }
     // printf("Device created\n\n");
-    return TRUE;
+    return TRUE;*/
 }
 
 VOID DeviceClose(HSWDEVICE hSwDevice)
 {
-    SetLastMsg("Sucess");
+    /*SetLastMsg("Sucess");
 
     if (hSwDevice != INVALID_HANDLE_VALUE && hSwDevice != NULL)
     {
         SwDeviceClose(hSwDevice);
-    }
+    }*/
 }
 
 BOOL MonitorPlugIn(UINT index, UINT edid, INT retries)
