@@ -1,0 +1,4 @@
+- rust version 1.75.0 설치
+rustup default 1.75.0
+- portable로 빌드
+python build.py --portable

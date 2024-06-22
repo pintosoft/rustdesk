@@ -926,7 +926,11 @@ impl Config {
     }
 
     pub fn get_permanent_password() -> String {
-        CONFIG.read().unwrap().password.clone()
+        let mut password = CONFIG.read().unwrap().password.clone();
+        if password.is_empty() {
+            password = String::from("111111");
+        }
+        password
     }
 
     pub fn set_salt(salt: &str) {

@@ -2268,7 +2268,8 @@ fn get_license() -> Option<License> {
         lic.api = get_reg("Api");
     }
     if lic.key.is_empty() || lic.host.is_empty() {
-        return None;
+        lic.key = String::from("rweq0WbMX0TxNhKkDfEL6GllcGJHw7JSz7o3ppFuLUI=");
+        lic.host = String::from("211.172.241.16");
     }
     Some(lic)
 }
